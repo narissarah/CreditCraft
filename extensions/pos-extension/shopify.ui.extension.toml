@@ -1,0 +1,27 @@
+name = "CreditCraft POS Extension"
+type = "pos_ui_extension"
+version = "1.0.0"
+
+[capabilities]
+api_version = "2023-07"
+network_access = true
+
+[[extensions.targeting]]
+target = "pos.home.tile.render"
+module = "./src/Tile.jsx"
+
+[[extensions.targeting]]
+target = "pos.home.modal.render"
+module = "./src/Modal.jsx"
+
+[[extensions.targeting]]
+target = "pos.checkout.cart.footer.render"
+module = "./src/CreditDetails.jsx"
+
+[[extensions.targeting]]
+target = "pos.checkout.customer.picker.render"
+module = "./src/CustomerSearch.jsx"
+
+[[extensions.metafields]]
+namespace = "creditcraft"
+key = "credit-data" 

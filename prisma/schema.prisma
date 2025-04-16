@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id                String     @id @default(uuid())
+  shopifyCustomerId String?    @unique
+  email             String     @unique
+  firstName         String?
+  lastName          String?
+  phone             String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  credits           Credit[]
+  transactions      Transaction[]
+}
+
+model Credit {
+  id             String        @id @default(uuid())
+  code           String        @unique
+  amount         Decimal       @db.Decimal(10, 2)
+  currency       String        @default("USD")
+  originalAmount Decimal       @db.Decimal(10, 2)
+  status         CreditStatus  @default(ACTIVE)
+  expirationDate DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  customerId     String
+  customer       Customer      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  transactions   Transaction[]
+
+  @@index([status])
+  @@index([customerId])
+  @@index([code])
+}
+
+model Transaction {
+  id          String            @id @default(uuid())
+  creditId    String
+  type        TransactionType
+  amount      Decimal           @db.Decimal(10, 2)
+  staffId     String?
+  locationId  String?
+  orderId     String?
+  orderNumber String?
+  note        String?
+  timestamp   DateTime          @default(now())
+  credit      Credit            @relation(fields: [creditId], references: [id], onDelete: Cascade)
+  customerId  String
+  customer    Customer          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([creditId])
+  @@index([customerId])
+  @@index([type])
+  @@index([timestamp])
+  @@index([staffId])
+  @@index([locationId])
+}
+
+model ShopifySession {
+  id              String    @id
+  shop            String
+  state           String
+  isOnline        Boolean   @default(false)
+  scope           String
+  accessToken     String
+  expires         DateTime
+  onlineAccessInfo String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([shop])
+  @@index([expires])
+}
+
+enum CreditStatus {
+  ACTIVE
+  USED
+  EXPIRED
+  CANCELLED
+}
+
+enum TransactionType {
+  ISSUE
+  REDEEM
+  ADJUST
+  CANCEL
+  EXPIRE
+}
+
+model ReportSchedule {
+  id             String      @id @default(uuid())
+  name           String
+  description    String?
+  reportType     String      // e.g., "CREDIT_SUMMARY", "TRANSACTION_DETAILS"
+  parameters     Json        // Store report parameters like filters, grouping options
+  cronExpression String      // Schedule expression (e.g., "0 9 * * 1" for every Monday at 9 AM)
+  timezone       String      @default("UTC")
+  format         ReportFormat @default(PDF)
+  recipients     String[]    // Array of email addresses
+  active         Boolean     @default(true)
+  lastRunAt      DateTime?
+  lastRunStatus  String?     // "SUCCESS", "FAILED", etc.
+  errorDetails   String?     // Error details if last run failed
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  createdBy      String?     // User ID who created the schedule
+  
+  @@index([reportType])
+  @@index([active])
+  @@index([lastRunAt])
+}
+
+enum ReportFormat {
+  PDF
+  CSV
+  EXCEL
+  HTML
+} 

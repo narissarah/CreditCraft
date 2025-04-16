@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Your Store Credit Has Been Issued</title>
+  <style type="text/css">
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; width: 100% !important; line-height: 1.4; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background-color: #5c6ac4; padding: 20px; text-align: center; color: white; }
+    .content { background-color: #ffffff; padding: 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-top: -4px; }
+    .footer { padding: 20px; text-align: center; font-size: 12px; color: #637381; }
+    
+    .credit-box { background-color: #f4f6f8; padding: 20px; margin: 20px 0; border-radius: 4px; text-align: center; }
+    .credit-amount { font-size: 24px; font-weight: bold; color: #5c6ac4; margin: 10px 0; }
+    .credit-code { font-family: monospace; background: #e6e6e6; padding: 8px; border-radius: 4px; }
+    
+    .button { background-color: #5c6ac4; color: white; text-decoration: none; padding: 12px 24px; border-radius: 4px; display: inline-block; margin: 20px 0; }
+    .expiry { color: #bf0711; font-weight: bold; }
+    
+    @media only screen and (max-width: 480px) {
+      .container { padding: 10px; }
+      .content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>{{shopName}}</h1>
+    </div>
+    
+    <div class="content">
+      <h2>Your Store Credit Has Been Issued!</h2>
+      
+      <p>Hello {{customerName}},</p>
+      
+      <p>A new store credit has been added to your account.</p>
+      
+      <div class="credit-box">
+        <p>Credit Amount:</p>
+        <div class="credit-amount">{{currency}}{{creditAmount}}</div>
+        
+        <p>Credit Code:</p>
+        <div class="credit-code">{{creditCode}}</div>
+        
+        <p>Expires On: <span class="expiry">{{expirationDate}}</span></p>
+      </div>
+      
+      <p>You can use this store credit during checkout for any future purchases in our store.</p>
+      
+      <center>
+        <a href="{{shopUrl}}" class="button">Shop Now</a>
+      </center>
+      
+      <p>Thank you for shopping with us!</p>
+      
+      <p>The {{shopName}} Team</p>
+    </div>
+    
+    <div class="footer">
+      <p>© {{currentYear}} {{shopName}}. All rights reserved.</p>
+      <p>
+        <a href="{{shopUrl}}">Visit our store</a> | 
+        <a href="{{unsubscribeUrl}}">Unsubscribe</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html> 

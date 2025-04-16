@@ -1,0 +1,19 @@
+- **Deployment**
+  - All deployments must use GitHub Actions or Vercel CLI with status checks.
+  - Environment variables must be managed via Vercel's dashboard.
+
+- **Security**
+  - SSL/TLS must be enabled for all domains.
+  - Content Security Policy (CSP) and security headers must be configured.
+  - Deployment Protection and WAF must be enabled for production.
+
+- **Performance**
+  - Use Vercel's image, script, and font optimization features.
+  - Enable Speed Insights and monitor Core Web Vitals.
+  - Use caching headers and ISR for static assets.
+
+- **Monitoring**
+  - Enable log drains and observability for all deployments.
+
+- **Verification**
+  - All items in the Vercel production checklist must be reviewed before each release. 

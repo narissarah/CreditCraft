@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Your Store Credit Is Expiring Soon</title>
+  <style type="text/css">
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; width: 100% !important; line-height: 1.4; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background-color: #f49342; padding: 20px; text-align: center; color: white; }
+    .content { background-color: #ffffff; padding: 30px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-top: -4px; }
+    .footer { padding: 20px; text-align: center; font-size: 12px; color: #637381; }
+    
+    .credit-box { background-color: #fff5ea; padding: 20px; margin: 20px 0; border-radius: 4px; border-left: 4px solid #f49342; }
+    .credit-amount { font-size: 24px; font-weight: bold; color: #f49342; margin: 10px 0; }
+    .credit-code { font-family: monospace; background: #e6e6e6; padding: 8px; border-radius: 4px; }
+    
+    .button { background-color: #f49342; color: white; text-decoration: none; padding: 12px 24px; border-radius: 4px; display: inline-block; margin: 20px 0; }
+    .countdown { font-size: 22px; font-weight: bold; color: #bf0711; text-align: center; padding: 15px; }
+    
+    @media only screen and (max-width: 480px) {
+      .container { padding: 10px; }
+      .content { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>{{shopName}}</h1>
+    </div>
+    
+    <div class="content">
+      <h2>Your Store Credit Is Expiring Soon!</h2>
+      
+      <p>Hello {{customerName}},</p>
+      
+      <div class="countdown">
+        Only {{daysUntilExpiration}} days left!
+      </div>
+      
+      <p>We wanted to remind you that your store credit will expire soon. Don't miss out on using your credit before it expires!</p>
+      
+      <div class="credit-box">
+        <p>Credit Amount:</p>
+        <div class="credit-amount">{{currency}}{{creditAmount}}</div>
+        
+        <p>Credit Code:</p>
+        <div class="credit-code">{{creditCode}}</div>
+        
+        <p>Expires On: <span style="color: #bf0711; font-weight: bold;">{{expirationDate}}</span></p>
+      </div>
+      
+      <p>Use this credit during checkout for any purchases in our store before it expires.</p>
+      
+      <center>
+        <a href="{{shopUrl}}" class="button">Shop Now</a>
+      </center>
+      
+      <p>Thank you for being our valued customer!</p>
+      
+      <p>The {{shopName}} Team</p>
+    </div>
+    
+    <div class="footer">
+      <p>© {{currentYear}} {{shopName}}. All rights reserved.</p>
+      <p>
+        <a href="{{shopUrl}}">Visit our store</a> | 
+        <a href="{{unsubscribeUrl}}">Unsubscribe</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html> 

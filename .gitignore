@@ -97,4 +97,17 @@ next-env.d.ts
 /prisma/dev.db-journal
 
 # Task Master
-/tasks/tasks.json 
+/tasks/tasks.json
+
+# Added by Claude Task Master
+# Dependency directories
+node_modules/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+# Task files
+tasks.json
+tasks/ 

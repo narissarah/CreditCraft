@@ -1,0 +1,58 @@
+{
+  "name": "creditcraft-pos-extension",
+  "version": "1.0.0",
+  "description": "CreditCraft POS UI Extension for Shopify",
+  "private": true,
+  "scripts": {
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@shopify/polaris": "^11.1.2",
+    "@shopify/pos-app-context": "^0.2.15",
+    "@shopify/app-bridge": "^3.7.9",
+    "@shopify/app-bridge-react": "^3.7.9",
+    "chart.js": "^4.3.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-router-dom": "^6.14.0",
+    "react-error-boundary": "^4.0.10",
+    "lodash.debounce": "^4.0.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@shopify/cli": "^3.48.0",
+    "@shopify/cli-kit": "^3.48.0",
+    "@shopify/app": "^3.48.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.42.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "shopify": {
+    "extensionType": "POS_UI_EXTENSION",
+    "capabilities": {
+      "network": {
+        "ownDomain": true
+      },
+      "apiAccess": {
+        "customer": "read_write",
+        "orders": "read_write"
+      },
+      "posContext": true
+    }
+  }
+} 

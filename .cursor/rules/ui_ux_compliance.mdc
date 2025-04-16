@@ -1,0 +1,19 @@
+- **Design System**
+  - All UI elements must use the defined design system components and color palette.
+  - Typography must follow the defined hierarchy (headings, body, captions).
+  - Components must be atomic, reusable, and documented.
+
+- **Responsiveness**
+  - All UI components must be responsive and support required screen sizes.
+  - Widget/component trees must not exceed 5 levels deep for maintainability.
+
+- **Accessibility**
+  - All UI must meet WCAG 2.1 AA standards.
+  - Interactive elements must be keyboard accessible and have proper ARIA labels.
+
+- **Consistency**
+  - UI must be consistent across platforms.
+  - Platform-specific code must be isolated and clearly marked.
+
+- **Verification**
+  - Visual review and accessibility validation must be performed before marking UI tasks as complete. 

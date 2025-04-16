@@ -1,0 +1,21 @@
+- **App Review & Store Requirements**
+  - All features must be traceable to a PRD requirement and Shopify's app store guidelines.
+  - App must not use prohibited or restricted configurations (see Shopify docs).
+  - Installation, setup, and onboarding must be clear and user-friendly.
+
+- **Security & Privacy**
+  - All API keys and secrets must be securely stored (never in client code).
+  - Data privacy and merchant risk guidelines must be followed.
+  - Webhooks and API endpoints must validate authenticity and use HTTPS.
+
+- **POS Extension**
+  - POS UI extension must use Shopify's Extension Kit and follow official design and security standards.
+  - Extension must be tested in both development and production POS environments.
+  - Updates and versioning must use Shopify's extension deployment system.
+
+- **Performance & Quality**
+  - App and extension must meet Shopify's performance and quality benchmarks.
+  - All critical flows must be tested for both online and POS contexts.
+
+- **Verification**
+  - Compliance with Shopify's latest requirements must be reviewed before each release and app submission. 

@@ -1,0 +1,32 @@
+- **Environment Management**
+  - All secrets and environment variables must be managed via Railway, Vercel, or GitHub Actions environment management.
+  - `.env` files with secrets must never be committed to version control.
+
+- **Backups**
+  - Automated daily backups must be enabled for all persistent data (backend, database).
+
+- **Security**
+  - All services must use SSL/TLS for data in transit.
+  - Access to production services must be restricted to trusted IPs and authenticated users.
+  - Redis must be secured with authentication and network restrictions.
+  - Regular security audits and dependency checks must be performed.
+
+- **Monitoring**
+  - Built-in monitoring/logging must be enabled for all managed services.
+
+- **Database & ORM**
+  - All schema changes must be managed via Prisma migrations and tracked in version control.
+
+- **CI/CD**
+  - All deployments must be triggered via GitHub Actions with status checks and encrypted secrets.
+
+- **Caching & Job Queues**
+  - Redis must be used for caching and Bull job queues.
+  - Job failures in Bull must be monitored and retried automatically.
+
+- **Package Management**
+  - Dependencies must be audited regularly for vulnerabilities using `npm audit`.
+  - Use npm lockfiles for deterministic builds.
+
+- **Verification**
+  - All items in the compliance checklist must be reviewed and checked before each release. 

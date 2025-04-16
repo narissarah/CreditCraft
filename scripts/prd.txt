@@ -1,0 +1,430 @@
+<context>
+# Overview
+CreditCraft is a comprehensive Shopify app designed to revolutionize store credit and gift card management for merchants. The app addresses the critical need for efficient credit management in e-commerce by providing a unified platform for issuing, tracking, and redeeming store credits across both online and physical retail environments.
+
+Target Users:
+- Shopify merchants managing store credits and gift cards
+- Store staff handling in-person transactions
+- Customers utilizing store credits for purchases
+
+Value Proposition:
+- Streamlines credit management operations
+- Reduces manual tracking errors
+- Enhances customer satisfaction through seamless credit redemption
+- Provides comprehensive analytics for better business decisions
+
+# Tech Stack
+
+## Backend
+- Runtime: Node.js
+- Framework: Express.js
+- API Integration: @shopify/shopify-api
+- Background Processing: Bull for Redis-based job queues
+
+## Frontend
+- Framework: React
+- UI Library: Shopify Polaris
+- Integration: Shopify App Bridge
+- State Management: React Query for server state
+- POS Extension: Shopify POS UI Extension Kit for native POS interface
+
+## Database & ORM
+- Database: Supabase (PostgreSQL)
+- ORM: Prisma
+- Caching: Redis
+- Database Hosting: Supabase Cloud
+
+## Development Tools
+- Shopify CLI for app development
+- ngrok for development tunneling
+- dotenv for environment management
+- Version Control: Git
+- Package Manager: npm
+
+## Deployment & Infrastructure
+- Backend Deployment: Railway
+- Frontend Deployment: Vercel
+- CI/CD: GitHub Actions
+- SSL/TLS: Auto-managed by Railway/Vercel
+
+# Core Features
+
+## Store Credit Management
+- Issue and track store credits with automated unique code generation
+- Set flexible expiration dates and track real-time balances
+- Support multiple currencies for international operations
+- Implement automated balance updates and notification system
+- Ensure secure credit code generation and validation
+
+## Transaction Tracking System
+- Maintain comprehensive transaction history with detailed audit logs
+- Support multiple transaction types (issue, redeem, adjust, cancel)
+- Track staff member attribution for accountability
+- Implement location-based tracking for multi-store operations
+- Generate detailed reports for financial reconciliation
+
+## Customer Integration Features
+- Seamless integration with existing Shopify customer accounts
+- QR code generation system for easy credit redemption
+- Real-time customer balance lookup functionality
+- Self-service customer portal for credit management
+- Automated email notification system for credit updates
+
+## Administrative Dashboard
+- Comprehensive credit management interface
+- Bulk operations support for efficient management
+- Advanced analytics and reporting system
+- Store-specific customization options
+- Advanced customer search and management tools
+- Quick credit note search and filtering capabilities
+- Direct customer addition functionality
+
+## POS Integration
+
+Native integration with Shopify POS system will be implemented using the Shopify POS UI Extension Kit, providing:
+
+- Real-time customer search at checkout through custom POS UI extension
+- Seamless credit application process during transactions via embedded forms
+- Instant balance verification system through POS extension API
+- In-person credit issuance capability with secure authentication
+- Customer profile creation and management at point of sale
+- Custom UI components following Shopify POS design guidelines
+- Offline capability for core credit checking functions
+- Responsive layouts optimized for various POS hardware configurations
+- Integration with receipt printing for credit-related documentation
+- Real-time synchronization with the main CreditCraft system
+
+The POS UI extension will be developed using Shopify's Extension Framework, ensuring:
+- Consistent user experience with native POS interface
+- Optimized performance for retail environments
+- Compliance with Shopify's POS security standards
+- Seamless updates through Shopify's extension deployment system
+
+### Technical Implementation Details
+
+1. Development Requirements:
+   - Shopify CLI version 3.0 or higher
+   - Development store setup
+   - App embedded in Shopify POS
+   - Node.js development environment
+
+2. Extension Architecture:
+   - Smart Grid integration for quick access to credit features
+   - Native UI components for optimal performance
+   - Real-time state management for cart interactions
+   - Responsive design for various POS hardware
+
+3. Implementation Steps:
+   - Generate POS UI extension using Shopify CLI
+   - Configure extension points in the Smart Grid
+   - Implement credit management interface components
+   - Set up secure API endpoints for credit operations
+   - Configure offline functionality and data sync
+   - Implement customer-facing display integration
+
+4. Deployment Process:
+   - Testing in development environment
+   - QA in preview mode using QR code deployment
+   - Version management through Shopify's extension deployment system
+   - Multi-location rollout support
+   - Automatic updates handling
+
+5. Extension Capabilities:
+   - Dynamic Smart Grid tiles that respond to cart state
+   - Real-time balance checking and verification
+   - Secure credit issuance workflows
+   - Customer profile management
+   - Transaction history access
+   - Offline operation support
+   - Multi-location synchronization
+
+# User Experience
+
+## User Personas
+
+1. Store Owner/Manager
+   - Needs: Complete oversight of credit system
+   - Goals: Efficient credit management, accurate reporting
+   - Pain Points: Manual tracking, reconciliation issues
+
+2. Store Staff
+   - Needs: Quick access to customer credits
+   - Goals: Smooth transaction processing
+   - Pain Points: Slow lookup, complex redemption
+
+3. Customer
+   - Needs: Easy credit redemption
+   - Goals: Seamless shopping experience
+   - Pain Points: Credit tracking, redemption complexity
+
+## Key User Flows
+
+1. Credit Issuance
+   - Staff initiates credit creation
+   - System generates unique code
+   - Customer receives notification
+   - Credit appears in customer account
+
+2. Credit Redemption
+   - Customer initiates purchase
+   - Applies credit via code/QR
+   - System validates and applies credit
+   - Balance updates automatically
+
+3. Admin Management
+   - Access dashboard
+   - View credit analytics
+   - Manage customer credits
+   - Generate reports
+
+## UI/UX Considerations
+- Clean, intuitive interface following Shopify Polaris guidelines
+- Mobile-responsive design for all interfaces
+- Clear credit status indicators
+- Easy-to-use search and filter functions
+- Accessible design meeting WCAG 2.1 standards
+</context>
+<PRD>
+# Technical Architecture
+
+## System Components
+
+1. Frontend Layer
+   - React-based admin interface
+   - Shopify Polaris component library
+   - Shopify App Bridge integration
+   - POS extension interface
+
+2. Backend Services
+   - Node.js/Express.js server
+   - RESTful API architecture
+   - WebSocket for real-time updates
+   - Background job processing
+
+3. Database Layer
+   - Supabase (PostgreSQL) for data storage
+   - Prisma ORM for data access
+   - Redis for caching
+   - Backup and recovery systems
+
+## Data Models
+
+1. Credits
+   - id: UUID
+   - code: String (unique)
+   - amount: Decimal
+   - currency: String
+   - status: Enum
+   - expiration_date: DateTime
+   - created_at: DateTime
+   - updated_at: DateTime
+
+2. Transactions
+   - id: UUID
+   - credit_id: UUID (foreign key)
+   - type: Enum
+   - amount: Decimal
+   - staff_id: UUID
+   - location_id: UUID
+   - timestamp: DateTime
+
+3. Customers
+   - id: UUID
+   - shopify_customer_id: String
+   - email: String
+   - credits: Credit[]
+   - transactions: Transaction[]
+
+## APIs and Integrations
+
+1. Shopify APIs
+   - Customer API
+   - Order API
+   - POS API
+   - Webhook endpoints
+
+2. Internal APIs
+   - Credit management endpoints
+   - Transaction processing
+   - Reporting endpoints
+   - Admin operations
+
+3. Third-party Integrations
+   - Email service provider
+   - QR code generation
+   - Analytics services
+
+## Infrastructure Requirements
+
+1. Hosting
+   - Railway for backend deployment
+   - Vercel for frontend hosting
+   - Supabase cloud database
+   - All environment variables and secrets are managed via the deployment platform's environment management system (Railway, Vercel, GitHub Actions).
+   - Automated daily backups are enabled for backend and database services.
+
+2. Security
+   - SSL/TLS encryption
+   - API authentication
+   - Rate limiting
+   - Data encryption
+   - Redis is secured with authentication and network restrictions, with eviction policies to prevent memory overflows.
+   - Access to production services is restricted to trusted IPs and authenticated users.
+   - All services use SSL/TLS encryption for data in transit.
+   - Regular security audits and dependency checks are performed.
+
+3. Monitoring
+   - Error tracking
+   - Performance monitoring
+   - Usage analytics
+   - Audit logging
+   - Use built-in monitoring/logging for all managed services (Railway, Vercel, Supabase, Redis).
+
+4. Database & ORM
+   - Database schema changes are managed exclusively through Prisma migrations, tracked in version control.
+
+5. CI/CD
+   - All deployments are triggered via GitHub Actions with status checks and encrypted secrets.
+
+6. Caching & Job Queues
+   - Redis is used for caching and Bull job queues as described.
+   - Job failures in Bull are monitored and retried automatically.
+
+7. Package Management
+   - Dependencies are audited regularly for vulnerabilities using npm audit.
+   - Use npm lockfiles for deterministic builds.
+
+# Development Roadmap
+
+## Phase 1: Foundation (MVP)
+1. Basic Credit Management
+   - Credit creation and tracking
+   - Simple redemption flow
+   - Basic customer management
+
+2. Core API Development
+   - Essential CRUD operations
+   - Basic Shopify integration
+   - Fundamental security features
+
+3. Admin Interface
+   - Basic dashboard
+   - Credit management UI
+   - Simple reporting
+
+## Phase 2: Enhanced Features
+1. Advanced Credit Features
+   - Multi-currency support
+   - Expiration management
+   - Bulk operations
+
+2. POS Integration
+   - Basic POS functionality
+   - Credit redemption at POS
+   - Customer lookup
+
+3. Improved Admin Tools
+   - Advanced reporting
+   - Search and filtering
+   - Audit logging
+
+## Phase 3: Advanced Features
+1. Customer Experience
+   - Customer portal
+   - QR code system
+   - Email notifications
+
+2. Advanced POS Features
+   - Offline support
+   - Advanced customer management
+   - Multi-location support
+
+3. Analytics and Reporting
+   - Advanced analytics
+   - Custom reports
+   - Data visualization
+
+# Logical Dependency Chain
+
+1. Core Infrastructure
+   - Database setup
+   - Basic API structure
+   - Authentication system
+
+2. Essential Features
+   - Credit management system
+   - Basic admin interface
+   - Simple customer management
+
+3. Integration Layer
+   - Shopify API integration
+   - POS basic integration
+   - Email system setup
+
+4. Enhanced Features
+   - Advanced credit features
+   - Full POS integration
+   - Customer portal
+
+5. Advanced Capabilities
+   - Analytics system
+   - Advanced reporting
+   - Multi-currency support
+
+# Risks and Mitigations
+
+## Technical Risks
+1. Data Consistency
+   - Risk: Concurrent credit operations
+   - Mitigation: Implement transaction locks
+
+2. Performance
+   - Risk: High transaction volume
+   - Mitigation: Implement caching, optimization
+
+3. Integration
+   - Risk: Shopify API changes
+   - Mitigation: Version monitoring, abstractions
+
+## MVP Risks
+1. Scope Control
+   - Risk: Feature creep
+   - Mitigation: Strict MVP definition
+
+2. Performance
+   - Risk: Slow initial version
+   - Mitigation: Performance benchmarks
+
+## Resource Constraints
+1. Development Time
+   - Risk: Complex features
+   - Mitigation: Phased approach
+
+2. Testing Coverage
+   - Risk: Insufficient testing
+   - Mitigation: Automated testing
+
+# Appendix
+
+## Technical Specifications
+1. Performance Requirements
+   - Response time < 200ms
+   - 99.9% uptime
+   - < 1s transaction processing
+
+2. Security Requirements
+   - PCI compliance
+   - Data encryption
+   - Regular security audits
+
+## Research Findings
+1. Market Analysis
+   - Growing demand for digital credits
+   - Increasing POS integration needs
+   - Multi-currency requirement trend
+
+2. Technical Trends
+   - Real-time processing preference
+   - Mobile-first approach
+   - Integration flexibility needs
+</PRD> 

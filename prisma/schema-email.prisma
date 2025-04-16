@@ -1,0 +1,64 @@
+// Email notification models
+
+// Email log for tracking sent emails
+model EmailLog {
+  id         String   @id @default(uuid())
+  recipient  String
+  template   String
+  subject    String
+  jobId      String?
+  metadata   Json?
+  sentAt     DateTime @default(now())
+  openedAt   DateTime?
+  clickedAt  DateTime?
+  status     String   @default("sent") // sent, delivered, opened, clicked, failed, bounced
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([recipient])
+  @@index([template])
+  @@index([sentAt])
+  @@index([status])
+}
+
+// Email template customization
+model EmailTemplate {
+  id             String   @id @default(uuid())
+  shopDomain     String
+  name           String
+  subject        String
+  template       String
+  htmlContent    String?
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([shopDomain, name])
+  @@index([shopDomain])
+}
+
+// Customer notification preferences
+model NotificationPreference {
+  id              String   @id @default(uuid())
+  customerId      String
+  emailEnabled    Boolean  @default(true)
+  creditIssued    Boolean  @default(true)
+  creditExpiring  Boolean  @default(true)
+  creditRedeemed  Boolean  @default(true)
+  balanceUpdates  Boolean  @default(true)
+  promotions      Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  customer        Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId])
+  @@index([customerId])
+}
+
+// Add relation to Customer model
+model Customer {
+  // existing fields...
+  
+  notificationPreferences NotificationPreference?
+} 

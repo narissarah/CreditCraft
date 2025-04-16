@@ -1,0 +1,26 @@
+- **Security**
+  - Row Level Security (RLS) must be enabled on all tables.
+  - SSL enforcement must be active for all database connections.
+  - Network restrictions must be enabled for the database.
+  - Supabase account must have multi-factor authentication (MFA) enabled.
+  - Sensitive data must use custom SMTP for auth emails.
+
+- **Performance**
+  - Suitable indices must be created for all common query patterns.
+  - Load testing must be performed before production launches.
+  - Point-in-Time Recovery (PITR) must be enabled for databases >4GB.
+
+- **Availability**
+  - Automated backups and PITR must be configured.
+  - Use Read Replicas for high-availability requirements.
+
+- **Rate Limiting & Abuse Prevention**
+  - Default and custom rate limits must be set for auth endpoints.
+  - CAPTCHA protection must be enabled for signup/sign-in/password reset.
+
+- **Workflow**
+  - All schema changes must be managed via Prisma migrations and version control.
+  - No direct changes to production database via Supabase Dashboard.
+
+- **Verification**
+  - All items in the Supabase production checklist must be reviewed before each release. 

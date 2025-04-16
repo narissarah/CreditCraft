@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Scheduled Report from CreditCraft</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #5c6ac4;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+    .content {
+      background-color: #ffffff;
+      padding: 20px;
+      border-left: 1px solid #dddddd;
+      border-right: 1px solid #dddddd;
+    }
+    .footer {
+      background-color: #f7f7f7;
+      color: #777777;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 0 0 5px 5px;
+      border: 1px solid #dddddd;
+    }
+    .button {
+      display: inline-block;
+      background-color: #5c6ac4;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin-top: 15px;
+    }
+    .button:hover {
+      background-color: #4959bd;
+    }
+    .report-details {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 20px 0;
+      border: 1px solid #eeeeee;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table th, table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #dddddd;
+    }
+    table th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>{{reportName}}</h1>
+    </div>
+    <div class="content">
+      <p>Hello,</p>
+      <p>Here is your scheduled report from CreditCraft. The report has been attached to this email in {{format}} format.</p>
+      
+      <div class="report-details">
+        <h3>Report Details</h3>
+        <table>
+          <tr>
+            <th>Report Name:</th>
+            <td>{{reportName}}</td>
+          </tr>
+          <tr>
+            <th>Generated On:</th>
+            <td>{{generatedDate}}</td>
+          </tr>
+          <tr>
+            <th>Date Range:</th>
+            <td>{{startDate}} to {{endDate}}</td>
+          </tr>
+          <tr>
+            <th>Report Type:</th>
+            <td>{{reportType}}</td>
+          </tr>
+        </table>
+      </div>
+      
+      <p>{{additionalNotes}}</p>
+      
+      <p>To view more reports or modify your report schedule, please visit the CreditCraft dashboard.</p>
+      
+      <a href="{{dashboardUrl}}" class="button">Go to Dashboard</a>
+    </div>
+    <div class="footer">
+      <p>This is an automated email sent by CreditCraft. Please do not reply to this email.</p>
+      <p>© {{currentYear}} CreditCraft. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html> 
