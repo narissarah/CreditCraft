@@ -14,6 +14,13 @@ import { initializeSessionStorage, StorageType } from './src/session/sessionMana
 import { logger } from './src/utils/logger';
 import { setupReportProcessingCron } from './src/scripts/processScheduledReports';
 
+// Check if we're in build mode (for Vercel)
+const isBuildMode = process.argv.includes('--build');
+if (isBuildMode) {
+  logger.info('Build mode detected, exiting without starting server');
+  process.exit(0); // Exit successfully
+}
+
 // Import routes
 import authRoutes from './src/routes/authRoutes';
 
