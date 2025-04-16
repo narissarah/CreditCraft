@@ -1,0 +1,30 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "CreditCraft"
+client_id = "${SHOPIFY_API_KEY}"
+application_url = "${SHOPIFY_APP_URL}"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,write_customers,read_customers,write_orders,read_orders"
+
+[auth]
+redirect_urls = ["${SHOPIFY_APP_URL}/auth/callback", "${SHOPIFY_APP_URL}/auth/shopify/callback"]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "${SHOPIFY_STORE}"
+
+# Extension directories
+[[extensions]]
+type = "pos_ui_extension"
+name = "POS Extension"
+handle = "pos-extension"
+directory = "extensions/pos-extension" 

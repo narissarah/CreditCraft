@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "shopify app dev",
     "build": "shopify app build",
-    "vercel-build": "node server.js --build",
     "deploy": "shopify app deploy",
     "info": "shopify app info",
     "generate": "shopify app generate",
